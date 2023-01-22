@@ -13,7 +13,9 @@
     <div class="post" th:each="post : ${posts}">
       <h2><a th:href="@{'/posts/' + ${post.id}}"
              th:text="${post.title}">Title</a></h2>
-      <h5><p th:text="'Published on ' + ${post.getCreatedAt()}">Created at</p></h5>
+      <h5 th:text="'Written by ' + ${post.account.firstName}
+                    + ' ' + ${post.account.lastName}">Author</h5>
+      <h5 th:text="'Published on ' + ${post.getCreatedAt()}">Created at</h5>
       <p th:text="${post.body}">body text</p>
       <br>
     </div>
