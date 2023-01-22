@@ -32,4 +32,7 @@ public class Account {
   private String firstName;
 
   private String lastName;
+
+  @OneToMany(mappedBy = "account")
+  private List<Post> posts;
 }
