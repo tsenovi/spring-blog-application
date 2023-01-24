@@ -24,12 +24,12 @@ public class PostController {
   public String getPost(@PathVariable Long id, Model model) {
     Optional<Post> optionalPost = postService.getById(id);
     if (optionalPost.isPresent()) {
-      Post post = optionalPost.get();
-      model.addAttribute("post", post);
-      return "post";
+      model.addAttribute("post", optionalPost.get());
     } else {
       return "404";
     }
+
+    return "post";
   }
 
   @GetMapping("/posts/new")
