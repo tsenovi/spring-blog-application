@@ -2,6 +2,7 @@ package com.example.springblogapplication.register;
 
 import com.example.springblogapplication.account.Account;
 import com.example.springblogapplication.account.AccountService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class RegisterController {
 
-  @Autowired
-  private AccountService accountService;
+  private final AccountService accountService;
 
   @GetMapping("/register")
   public String getRegisterPage(Model model) {
