@@ -5,18 +5,18 @@ import com.example.springblogapplication.account.AccountService;
 import com.example.springblogapplication.post.Post;
 import com.example.springblogapplication.post.PostService;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SeedData implements CommandLineRunner {
 
-  @Autowired
-  private PostService postService;
+  private final PostService postService;
 
-  @Autowired
-  private AccountService accountService;
+  private final AccountService accountService;
 
 
   @Override
