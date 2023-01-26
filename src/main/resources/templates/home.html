@@ -1,33 +1,44 @@
-<!doctype html>
-<html xmlns:th="https://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="https://thymeleaf.org ">
-  <head>
-    <meta charset="UTF-8">
-    <title>Blog::Home</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Blog Application</h1>
-      <hr>
-      <ul>
-        <li><a th:href="@{/posts/new}">New Post</a></li>
-      </ul>
-      <div class="posts-container">
-        <div class="post" th:each="post : ${posts}">
-          <h2><a th:href="@{'/posts/' + ${post.id}}"
-                 th:text="${post.title}">Title</a></h2>
-          <h5 th:text="'Written by ' + ${post.account.firstName}
-                        + ' ' + ${post.account.lastName}">Author</h5>
-          <h5 th:text="'Published on ' + ${post.createdAt}">Created at</h5>
-          <p th:text="${post.body}">body text</p>
-          <br>
-        </div>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Blog::Home</title>
+</head>
+<body>
+<div class="container">
+  <h1>Blog Application</h1>
+  <hr>
+  <ul sec:authorize="!isAuthenticated()">
+    <li><a th:href="@{/register}">Register</a></li>
+    <li><a th:href="@{/login}">Login</a></li>
+  </ul>
+  <div sec:authorize="isAuthenticated()">
+    <form action="#"
+          th:action="@{/logout}"
+          method="POST">
+      <div>
+        <label>Hello, <span sec:authentication="name">Username</span></label>
       </div>
+      <button type="submit">Logout</button>
+    </form>
+  </div>
+  <hr/>
+  <ul sec:authorize="isAuthenticated()">
+    <li><a th:href="@{/posts/new}">New Post</a></li>
+  </ul>
+  <div class="posts-container">
+    <div class="post" th:each="post : ${posts}">
+      <h2><a th:href="@{'/posts/' + ${post.id}}"
+             th:text="${post.title}">Title</a></h2>
+      <h5 th:text="'Written by ' + ${post.account.firstName}
+                        + ' ' + ${post.account.lastName}">Author</h5>
+      <h5 th:text="'Published on ' + ${post.createdAt}">Created at</h5>
+      <p th:text="${post.body}">body text</p>
+      <br>
     </div>
-    <hr />
-    <ul>
-      <li><a th:href="@{/register}">Register</a></li>
-      <li><a th:href="@{/login}">Login</a></li>
-    </ul>
-  </body>
+  </div>
+</div>
+<hr/>
+</body>
 </html>

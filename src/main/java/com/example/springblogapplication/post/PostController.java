@@ -2,6 +2,7 @@ package com.example.springblogapplication.post;
 
 import com.example.springblogapplication.account.Account;
 import com.example.springblogapplication.account.AccountService;
+import java.security.Principal;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ public class PostController {
   }
 
   @GetMapping("/posts/new")
-  public String createNewPost(Model model) {
-    Optional<Account> optionalAccount = accountService.findByEmail("ivan.tsenov@gmail.com");
+  public String createNewPost(Principal principal, Model model) {
+    Optional<Account> optionalAccount = accountService.findByEmail(principal.getName());
     if (optionalAccount.isPresent()){
       Post post = new Post();
       post.setAccount(optionalAccount.get());
