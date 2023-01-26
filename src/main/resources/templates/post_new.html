@@ -1,14 +1,15 @@
 <!doctype html>
-<html xmlns:th="https://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns="http://www.w3.org/1999/html"
-      xsi:schemaLocation="https://thymeleaf.org ">
+<html xmlns:th="http://www.thymeleaf.org">
+
   <head>
     <meta charset="UTF-8">
     <title>Blog::New Post</title>
   </head>
   <body>
     <div class="container">
-      <a th:href="@{/}">Home</a>
+      <h1>Blog Application</h1>
+      <hr>
+      <h2><a th:href="@{/}">Home</a></h2>
       <form action="#"
             th:action="@{'/posts/new'}"
             th:object="${post}"

@@ -10,4 +10,6 @@ public interface PostService {
   List<Post> getAll();
 
   Post save(Post post);
+
+  void delete(Post post);
 }
