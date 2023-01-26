@@ -34,6 +34,7 @@
       <h5 th:text="'Written by ' + ${post.account.firstName}
                         + ' ' + ${post.account.lastName}">Author</h5>
       <h5 th:text="'Published on ' + ${post.createdAt}">Created at</h5>
+      <h5 th:text="'Updated on ' + ${post.updatedAt}">Updated at</h5>
       <p th:text="${post.body}">body text</p>
       <br>
     </div>
