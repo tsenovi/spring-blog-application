@@ -1,5 +1,6 @@
 package com.example.springblogapplication.post;
 
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -35,5 +36,13 @@ public class PostServiceImpl implements PostService {
   @Override
   public void delete(Post post) {
     postRepository.delete(post);
+  }
+
+  @Override
+  public void update(Principal principal, Post existingPost, Post post) {
+    existingPost.setUpdatedBy(principal.getName());
+    existingPost.setTitle(post.getTitle());
+    existingPost.setBody(post.getBody());
+    save(existingPost);
   }
 }

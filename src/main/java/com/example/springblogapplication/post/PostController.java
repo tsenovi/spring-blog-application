@@ -71,10 +71,7 @@ public class PostController {
     Optional<Post> optionalPost = postService.getById(id);
     if (optionalPost.isPresent()) {
       Post existingPost = optionalPost.get();
-      existingPost.setUpdatedBy(principal.getName());
-      existingPost.setTitle(post.getTitle());
-      existingPost.setBody(post.getBody());
-      postService.save(existingPost);
+      postService.update(principal, existingPost, post);
       return "redirect:/posts/" + post.getId();
     }
 

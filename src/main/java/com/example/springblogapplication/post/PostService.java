@@ -1,5 +1,6 @@
 package com.example.springblogapplication.post;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,4 +13,6 @@ public interface PostService {
   Post save(Post post);
 
   void delete(Post post);
+
+  void update(Principal principal, Post existingPost, Post post);
 }
